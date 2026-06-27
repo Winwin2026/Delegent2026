@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ตรวจสอบเบี้ยขยัน</title>
+<style>
+body{font-family:Tahoma,sans-serif;background:#f4f7fb;margin:0}
+.card{max-width:700px;margin:40px auto;background:#fff;padding:24px;border-radius:12px;box-shadow:0 2px 10px rgba(0,0,0,.1)}
+input,button{padding:12px;width:100%;margin:8px 0}
+button{background:#0b5ed7;color:#fff;border:none}
+table{width:100%;border-collapse:collapse;margin-top:15px}
+td,th{border:1px solid #ddd;padding:8px}
+</style>
+</head>
+<body>
+<div class="card">
+<h2>ตรวจสอบเบี้ยขยันพนักงาน</h2>
+<input id="emp" placeholder="กรอกรหัสพนักงาน">
+<button onclick="searchEmp()">ตรวจสอบ</button>
+<div id="result"></div>
+</div>
+<script>
+const employees=[
+ {id:"S5707107",name:"สาวิตรี บุญกล้า",level:"S3",apr:550,may:550,jun:550}
+];
+function searchEmp(){
+ const id=document.getElementById('emp').value.trim().toUpperCase();
+ const e=employees.find(x=>x.id===id);
+ if(!e){document.getElementById('result').innerHTML='ไม่พบข้อมูล';return;}
+ document.getElementById('result').innerHTML=`
+ <h3>${e.name}</h3>
+ <p>รหัส: ${e.id} | ระดับ: ${e.level}</p>
+ <table>
+ <tr><th>เดือน</th><th>เบี้ยขยัน</th></tr>
+ <tr><td>เม.ย. 2569</td><td>${e.apr||0}</td></tr>
+ <tr><td>พ.ค. 2569</td><td>${e.may||0}</td></tr>
+ <tr><td>มิ.ย. 2569</td><td>${e.jun||0}</td></tr>
+ </table>`;
+}
+</script>
+</body></html>
